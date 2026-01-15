@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, type ReactNode } from 'react'
+import { createContext, useContext, useReducer, useState, type ReactNode } from 'react'
 import { ContentfulClient, DependencyResolver, SyncEngine } from '../services'
 import type { ContentfulEnvironment, DependencyGraph, SyncProgress, SyncResult } from '../types'
 
@@ -16,6 +16,7 @@ interface AppState {
   isSyncing: boolean
   syncProgress: SyncProgress | null
   syncResult: SyncResult | null
+  syncError: string | null
 }
 
 type AppAction =
@@ -30,6 +31,7 @@ type AppAction =
   | { type: 'SYNC_START' }
   | { type: 'SYNC_PROGRESS'; progress: SyncProgress }
   | { type: 'SYNC_COMPLETE'; result: SyncResult }
+  | { type: 'SYNC_ERROR'; error: string }
   | { type: 'RESET' }
 
 const initialState: AppState = {
@@ -45,7 +47,8 @@ const initialState: AppState = {
   resolveError: null,
   isSyncing: false,
   syncProgress: null,
-  syncResult: null
+  syncResult: null,
+  syncError: null
 }
 
 function appReducer(state: AppState, action: AppAction): AppState {
@@ -72,6 +75,8 @@ function appReducer(state: AppState, action: AppAction): AppState {
       return { ...state, syncProgress: action.progress }
     case 'SYNC_COMPLETE':
       return { ...state, isSyncing: false, syncResult: action.result }
+    case 'SYNC_ERROR':
+      return { ...state, isSyncing: false, syncError: action.error }
     case 'RESET':
       return initialState
     default:
@@ -94,7 +99,7 @@ const AppContext = createContext<AppContextValue | null>(null)
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(appReducer, initialState)
-  const client = new ContentfulClient()
+  const [client] = useState(() => new ContentfulClient())
 
   const connect = async (spaceId: string, accessToken: string): Promise<boolean> => {
     dispatch({ type: 'CONNECT_START' })
@@ -133,11 +138,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (!state.dependencyGraph) return
 
     dispatch({ type: 'SYNC_START' })
-    const engine = new SyncEngine(client)
-    const result = await engine.execute(state.dependencyGraph, (progress) => {
-      dispatch({ type: 'SYNC_PROGRESS', progress })
-    })
-    dispatch({ type: 'SYNC_COMPLETE', result })
+    try {
+      const engine = new SyncEngine(client)
+      const result = await engine.execute(state.dependencyGraph, (progress) => {
+        dispatch({ type: 'SYNC_PROGRESS', progress })
+      })
+      dispatch({ type: 'SYNC_COMPLETE', result })
+    } catch (error) {
+      dispatch({ type: 'SYNC_ERROR', error: error instanceof Error ? error.message : 'Sync failed' })
+    }
   }
 
   const reset = () => {
