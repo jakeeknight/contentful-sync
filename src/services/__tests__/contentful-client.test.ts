@@ -115,6 +115,26 @@ describe('ContentfulClient', () => {
       expect(result.success).toBe(false)
       expect(result.error).toBeDefined()
     })
+
+    it('should return error when source environment not set', async () => {
+      const mockSpace = {
+        getEnvironments: vi.fn().mockResolvedValue({ items: [] })
+      }
+
+      const { createClient } = await import('contentful-management')
+      vi.mocked(createClient).mockReturnValue({
+        getSpace: vi.fn().mockResolvedValue(mockSpace)
+      } as any)
+
+      const client = new ContentfulClient()
+      await client.connect('space-id', 'token')
+      // Note: NOT setting source environment
+
+      const result = await client.getEntry('entry-123')
+
+      expect(result.success).toBe(false)
+      expect(result.error).toContain('Source environment not set')
+    })
   })
 
   describe('getAsset', () => {
@@ -157,6 +177,53 @@ describe('ContentfulClient', () => {
 
       expect(result.success).toBe(true)
       expect(result.asset?.sys.id).toBe('asset-123')
+    })
+
+    it('should return error when asset not found', async () => {
+      const mockEnv = {
+        sys: { id: 'master' },
+        name: 'master',
+        getAsset: vi.fn().mockRejectedValue(new Error('Not found'))
+      }
+
+      const mockSpace = {
+        getEnvironments: vi.fn().mockResolvedValue({ items: [mockEnv] }),
+        getEnvironment: vi.fn().mockResolvedValue(mockEnv)
+      }
+
+      const { createClient } = await import('contentful-management')
+      vi.mocked(createClient).mockReturnValue({
+        getSpace: vi.fn().mockResolvedValue(mockSpace)
+      } as any)
+
+      const client = new ContentfulClient()
+      await client.connect('space-id', 'token')
+      await client.setSourceEnvironment('master')
+
+      const result = await client.getAsset('nonexistent')
+
+      expect(result.success).toBe(false)
+      expect(result.error).toBeDefined()
+    })
+
+    it('should return error when source environment not set', async () => {
+      const mockSpace = {
+        getEnvironments: vi.fn().mockResolvedValue({ items: [] })
+      }
+
+      const { createClient } = await import('contentful-management')
+      vi.mocked(createClient).mockReturnValue({
+        getSpace: vi.fn().mockResolvedValue(mockSpace)
+      } as any)
+
+      const client = new ContentfulClient()
+      await client.connect('space-id', 'token')
+      // Note: NOT setting source environment
+
+      const result = await client.getAsset('asset-123')
+
+      expect(result.success).toBe(false)
+      expect(result.error).toContain('Source environment not set')
     })
   })
 })
