@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "contentful": "^11.10.2",
+    "contentful-management": "^11.67.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
