@@ -192,8 +192,9 @@ export class ContentfulClient {
         await targetAsset.update()
       } else {
         // Create new asset
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const newAsset = await this.targetEnv.createAssetWithId(asset.sys.id, {
-          fields: asset.fields as Record<string, unknown>
+          fields: asset.fields as any
         })
 
         // Process the asset (required for Contentful to make it available)

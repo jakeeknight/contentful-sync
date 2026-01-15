@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { SyncEngine } from '../sync-engine'
 import type { ContentfulClient } from '../contentful-client'
 import type { DependencyGraph, DependencyNode, ContentfulEntry, ContentfulAsset } from '../../types'

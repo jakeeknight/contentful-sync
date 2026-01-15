@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { DependencyResolver } from '../dependency-resolver'
 import type { ContentfulClient } from '../contentful-client'
 import type { ContentfulEntry, ContentfulAsset } from '../../types'

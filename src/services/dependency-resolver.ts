@@ -1,7 +1,5 @@
 import type { ContentfulClient } from './contentful-client'
 import type {
-  ContentfulEntry,
-  ContentfulAsset,
   ContentfulLink,
   DependencyNode,
   DependencyGraph
