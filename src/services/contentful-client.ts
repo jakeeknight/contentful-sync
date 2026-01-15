@@ -19,6 +19,16 @@ export interface GetAssetResult {
   error?: string
 }
 
+export interface SyncEntryResult {
+  success: boolean
+  error?: string
+}
+
+export interface SyncAssetResult {
+  success: boolean
+  error?: string
+}
+
 export class ContentfulClient {
   private client: ClientAPI | null = null
   private space: Space | null = null
@@ -124,6 +134,73 @@ export class ContentfulClient {
           fields: asset.fields as ContentfulAsset['fields']
         }
       }
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unknown error'
+      return { success: false, error: message }
+    }
+  }
+
+  async syncEntryToTarget(entry: ContentfulEntry): Promise<SyncEntryResult> {
+    if (!this.targetEnv) {
+      return { success: false, error: 'Target environment not set' }
+    }
+
+    try {
+      // Check if entry exists in target
+      let targetEntry
+      try {
+        targetEntry = await this.targetEnv.getEntry(entry.sys.id)
+      } catch {
+        // Entry doesn't exist, will create new
+      }
+
+      if (targetEntry) {
+        // Update existing entry
+        targetEntry.fields = entry.fields
+        await targetEntry.update()
+      } else {
+        // Create new entry
+        await this.targetEnv.createEntryWithId(entry.sys.contentType.sys.id, entry.sys.id, {
+          fields: entry.fields
+        })
+      }
+
+      return { success: true }
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unknown error'
+      return { success: false, error: message }
+    }
+  }
+
+  async syncAssetToTarget(asset: ContentfulAsset): Promise<SyncAssetResult> {
+    if (!this.targetEnv) {
+      return { success: false, error: 'Target environment not set' }
+    }
+
+    try {
+      // Check if asset exists in target
+      let targetAsset
+      try {
+        targetAsset = await this.targetEnv.getAsset(asset.sys.id)
+      } catch {
+        // Asset doesn't exist, will create new
+      }
+
+      if (targetAsset) {
+        // Update existing asset
+        targetAsset.fields = asset.fields as typeof targetAsset.fields
+        await targetAsset.update()
+      } else {
+        // Create new asset
+        const newAsset = await this.targetEnv.createAssetWithId(asset.sys.id, {
+          fields: asset.fields as Record<string, unknown>
+        })
+
+        // Process the asset (required for Contentful to make it available)
+        await newAsset.processForAllLocales()
+      }
+
+      return { success: true }
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Unknown error'
       return { success: false, error: message }
