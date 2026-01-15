@@ -7,15 +7,22 @@ import type {
   DependencyGraph
 } from '../types'
 
+/**
+ * Resolves dependencies for a Contentful entry by recursively traversing linked entries and assets.
+ *
+ * NOTE: This resolver is not thread-safe. Do not call resolve() concurrently on the same instance.
+ */
 export class DependencyResolver {
   private client: ContentfulClient
   private visited: Set<string> = new Set()
   private allNodes: Map<string, DependencyNode> = new Map()
   private entryCount = 0
   private assetCount = 0
+  private maxDepth: number = 50
 
-  constructor(client: ContentfulClient) {
+  constructor(client: ContentfulClient, maxDepth: number = 50) {
     this.client = client
+    this.maxDepth = maxDepth
   }
 
   async resolve(entryId: string): Promise<DependencyGraph> {
@@ -40,6 +47,10 @@ export class DependencyResolver {
 
   private async resolveEntry(entryId: string, depth: number): Promise<DependencyNode | null> {
     if (this.visited.has(`entry:${entryId}`)) {
+      return this.allNodes.get(`entry:${entryId}`) || null
+    }
+
+    if (depth >= this.maxDepth) {
       return this.allNodes.get(`entry:${entryId}`) || null
     }
 
@@ -85,6 +96,10 @@ export class DependencyResolver {
 
   private async resolveAsset(assetId: string, depth: number): Promise<DependencyNode | null> {
     if (this.visited.has(`asset:${assetId}`)) {
+      return this.allNodes.get(`asset:${assetId}`) || null
+    }
+
+    if (depth >= this.maxDepth) {
       return this.allNodes.get(`asset:${assetId}`) || null
     }
 

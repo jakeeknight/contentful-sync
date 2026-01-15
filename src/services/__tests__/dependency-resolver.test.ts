@@ -170,5 +170,14 @@ describe('DependencyResolver', () => {
       // Should not infinite loop, should have exactly 2 entries
       expect(graph.entryCount).toBe(2)
     })
+
+    it('should throw error when root entry not found', async () => {
+      const mockClient = createMockClient()
+      mockClient.getEntry.mockResolvedValue({ success: false, error: 'Not found' })
+
+      const resolver = new DependencyResolver(mockClient as unknown as ContentfulClient)
+
+      await expect(resolver.resolve('nonexistent')).rejects.toThrow('Failed to resolve entry')
+    })
   })
 })
