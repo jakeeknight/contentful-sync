@@ -109,8 +109,16 @@ export class SyncEngine {
       if (visited.has(key)) return
       visited.add(key)
 
+      // Sort children so assets are visited before entries at each level
+      // This ensures assets are synced before entries that reference them
+      const sortedChildren = [...node.children].sort((a, b) => {
+        if (a.type === 'asset' && b.type !== 'asset') return -1
+        if (a.type !== 'asset' && b.type === 'asset') return 1
+        return 0
+      })
+
       // Visit children first (dependencies)
-      for (const child of node.children) {
+      for (const child of sortedChildren) {
         visit(child)
       }
 
@@ -123,12 +131,6 @@ export class SyncEngine {
       visit(node)
     }
 
-    // Sort so assets come before entries at same position
-    // This ensures assets are synced before entries that reference them
-    return order.sort((a, b) => {
-      if (a.type === 'asset' && b.type === 'entry') return -1
-      if (a.type === 'entry' && b.type === 'asset') return 1
-      return 0
-    })
+    return order
   }
 }
