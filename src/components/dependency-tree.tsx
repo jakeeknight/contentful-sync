@@ -36,6 +36,7 @@ function getAssetTitle(asset: ContentfulAsset): string {
 function TreeNode({ node, level }: TreeNodeProps) {
   const [expanded, setExpanded] = useState(true)
   const hasChildren = node.children.length > 0
+  const isPruned = node.status === 'pruned'
 
   const title = node.type === 'entry'
     ? getEntryTitle(node.data as ContentfulEntry)
@@ -52,6 +53,7 @@ function TreeNode({ node, level }: TreeNodeProps) {
           flex items-center gap-2 py-1.5 px-2 rounded-md
           hover:bg-slate-50 cursor-pointer
           ${level > 0 ? 'ml-6' : ''}
+          ${isPruned ? 'opacity-60' : ''}
         `}
         onClick={() => hasChildren && setExpanded(!expanded)}
       >
@@ -63,18 +65,27 @@ function TreeNode({ node, level }: TreeNodeProps) {
         {!hasChildren && <span className="w-4" />}
 
         <span className="text-slate-400">
-          {node.type === 'entry' ? '📄' : '🖼️'}
+          {isPruned ? '⊘' : node.type === 'entry' ? '📄' : '🖼️'}
         </span>
 
-        <span className="font-medium text-slate-900">{title}</span>
+        <span className={`font-medium ${isPruned ? 'text-slate-500' : 'text-slate-900'}`}>
+          {title}
+        </span>
 
         <span className="text-slate-500 text-sm">({contentType})</span>
 
-        <Badge variant={node.type === 'entry' ? 'entry' : 'asset'}>
-          {node.type}
-        </Badge>
+        {isPruned ? (
+          <>
+            <Badge variant="skipped">skipped</Badge>
+            <span className="text-amber-600 text-xs">content type loop</span>
+          </>
+        ) : (
+          <Badge variant={node.type === 'entry' ? 'entry' : 'asset'}>
+            {node.type}
+          </Badge>
+        )}
 
-        <span className="text-slate-400 text-xs">{node.id}</span>
+        {!isPruned && <span className="text-slate-400 text-xs">{node.id}</span>}
       </div>
 
       {expanded && hasChildren && (
