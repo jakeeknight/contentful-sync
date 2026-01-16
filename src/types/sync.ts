@@ -31,6 +31,7 @@ export interface SyncResult {
   success: boolean
   entriesSynced: number
   assetsSynced: number
+  skippedCount: number
   errors: SyncError[]
   duration: number
 }

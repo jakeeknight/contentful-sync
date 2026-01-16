@@ -26,6 +26,7 @@ export class SyncEngine {
     const errors: SyncError[] = []
     let entriesSynced = 0
     let assetsSynced = 0
+    let skippedCount = 0
 
     // Build execution order: deepest dependencies first, assets before entries at same depth
     const executionOrder = this.buildExecutionOrder(graph)
@@ -95,6 +96,7 @@ export class SyncEngine {
       success: errors.length === 0,
       entriesSynced,
       assetsSynced,
+      skippedCount,
       errors,
       duration
     }
