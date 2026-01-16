@@ -2,14 +2,15 @@ import { type ButtonHTMLAttributes, type ReactNode } from 'react'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
-  variant?: 'primary' | 'secondary' | 'destructive'
+  variant?: 'primary' | 'secondary' | 'destructive' | 'info'
   loading?: boolean
 }
 
 const variantStyles = {
   primary: 'bg-slate-900 text-white hover:bg-slate-800 shadow-sm',
   secondary: 'bg-white text-slate-900 border border-slate-200 hover:bg-slate-50',
-  destructive: 'bg-red-500 text-white hover:bg-red-600 shadow-sm'
+  destructive: 'bg-red-500 text-white hover:bg-red-600 shadow-sm',
+  info: 'bg-blue-500 text-white hover:bg-blue-600 shadow-sm'
 }
 
 export function Button({

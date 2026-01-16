@@ -53,11 +53,11 @@ export function SearchPanel() {
           </div>
 
           {!state.isConnected && (
-            <Alert>Connect to Contentful to search for entries</Alert>
+            <Alert variant="info">Connect to Contentful to search for entries</Alert>
           )}
 
           {state.isConnected && !state.sourceEnvironment && (
-            <Alert>Select a source environment to search</Alert>
+            <Alert variant="info">Select a source environment to search</Alert>
           )}
 
           {state.resolveError && (
