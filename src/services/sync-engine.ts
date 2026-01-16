@@ -26,7 +26,14 @@ export class SyncEngine {
     const errors: SyncError[] = []
     let entriesSynced = 0
     let assetsSynced = 0
+
+    // Count pruned nodes
     let skippedCount = 0
+    for (const node of graph.allNodes.values()) {
+      if (node.status === 'pruned') {
+        skippedCount++
+      }
+    }
 
     // Build execution order: deepest dependencies first, assets before entries at same depth
     const executionOrder = this.buildExecutionOrder(graph)
@@ -110,6 +117,11 @@ export class SyncEngine {
       const key = `${node.type}:${node.id}`
       if (visited.has(key)) return
       visited.add(key)
+
+      // Skip pruned nodes - don't add to execution order
+      if (node.status === 'pruned') {
+        return
+      }
 
       // Sort children so assets are visited before entries at each level
       // This ensures assets are synced before entries that reference them
