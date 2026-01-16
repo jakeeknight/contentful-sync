@@ -15,7 +15,7 @@ vi.mock('./services', () => ({
 describe('App', () => {
   it('renders the application title', () => {
     render(<App />)
-    expect(screen.getByText(/contentful environment sync/i)).toBeInTheDocument()
+    expect(screen.getByText(/contentful sync tool/i)).toBeInTheDocument()
   })
 
   it('renders configuration panel', () => {
