@@ -9,6 +9,7 @@ describe('SyncResults', () => {
       success: true,
       entriesSynced: 5,
       assetsSynced: 2,
+      skippedCount: 0,
       errors: [],
       duration: 1500
     }
@@ -23,6 +24,7 @@ describe('SyncResults', () => {
       success: false,
       entriesSynced: 3,
       assetsSynced: 1,
+      skippedCount: 0,
       errors: [
         { itemId: 'entry-1', itemType: 'entry', message: 'Network error' }
       ],
@@ -37,10 +39,27 @@ describe('SyncResults', () => {
       success: true,
       entriesSynced: 1,
       assetsSynced: 0,
+      skippedCount: 0,
       errors: [],
       duration: 1500
     }
     render(<SyncResults result={result} />)
     expect(screen.getByText(/1\.5s/i)).toBeInTheDocument()
+  })
+
+  it('should display skipped count when entries were skipped', () => {
+    const result: SyncResult = {
+      success: true,
+      entriesSynced: 5,
+      assetsSynced: 2,
+      skippedCount: 3,
+      errors: [],
+      duration: 1500
+    }
+
+    render(<SyncResults result={result} />)
+
+    expect(screen.getByText('3 skipped')).toBeInTheDocument()
+    expect(screen.getByText(/content type loop/i)).toBeInTheDocument()
   })
 })

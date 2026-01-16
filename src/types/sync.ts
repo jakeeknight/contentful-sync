@@ -8,6 +8,8 @@ export interface DependencyNode {
   data: ContentfulEntry | ContentfulAsset
   children: DependencyNode[]
   depth: number
+  status?: 'resolved' | 'pruned'
+  pruneReason?: 'content-type-loop'
 }
 
 export interface DependencyGraph {
@@ -29,6 +31,7 @@ export interface SyncResult {
   success: boolean
   entriesSynced: number
   assetsSynced: number
+  skippedCount: number
   errors: SyncError[]
   duration: number
 }

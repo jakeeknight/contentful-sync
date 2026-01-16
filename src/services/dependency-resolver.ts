@@ -29,7 +29,7 @@ export class DependencyResolver {
     this.entryCount = 0
     this.assetCount = 0
 
-    const root = await this.resolveEntry(entryId, 0)
+    const root = await this.resolveEntry(entryId, 0, new Set())
 
     if (!root) {
       throw new Error(`Failed to resolve entry: ${entryId}`)
@@ -43,7 +43,11 @@ export class DependencyResolver {
     }
   }
 
-  private async resolveEntry(entryId: string, depth: number): Promise<DependencyNode | null> {
+  private async resolveEntry(
+    entryId: string,
+    depth: number,
+    contentTypeChain: Set<string> = new Set()
+  ): Promise<DependencyNode | null> {
     if (this.visited.has(`entry:${entryId}`)) {
       return this.allNodes.get(`entry:${entryId}`) || null
     }
@@ -60,6 +64,28 @@ export class DependencyResolver {
     }
 
     const entry = result.entry
+    const contentType = entry.sys.contentType.sys.id
+
+    // Check for content type loop
+    if (contentTypeChain.has(contentType)) {
+      this.entryCount++
+      const node: DependencyNode = {
+        id: entryId,
+        type: 'entry',
+        data: entry,
+        children: [],
+        depth,
+        status: 'pruned',
+        pruneReason: 'content-type-loop'
+      }
+      this.allNodes.set(`entry:${entryId}`, node)
+      return node
+    }
+
+    // Add this content type to the chain for child resolution
+    const newChain = new Set(contentTypeChain)
+    newChain.add(contentType)
+
     this.entryCount++
 
     const node: DependencyNode = {
@@ -67,7 +93,8 @@ export class DependencyResolver {
       type: 'entry',
       data: entry,
       children: [],
-      depth
+      depth,
+      status: 'resolved'
     }
 
     this.allNodes.set(`entry:${entryId}`, node)
@@ -77,7 +104,7 @@ export class DependencyResolver {
 
     for (const link of links) {
       if (link.sys.linkType === 'Entry') {
-        const childNode = await this.resolveEntry(link.sys.id, depth + 1)
+        const childNode = await this.resolveEntry(link.sys.id, depth + 1, newChain)
         if (childNode && !node.children.some(c => c.id === childNode.id)) {
           node.children.push(childNode)
         }
@@ -115,7 +142,8 @@ export class DependencyResolver {
       type: 'asset',
       data: result.asset,
       children: [],
-      depth
+      depth,
+      status: 'resolved'
     }
 
     this.allNodes.set(`asset:${assetId}`, node)

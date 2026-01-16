@@ -53,4 +53,51 @@ describe('DependencyTree', () => {
     expect(screen.getByText('Hero Image')).toBeInTheDocument()
     expect(screen.getByText('asset')).toBeInTheDocument()
   })
+
+  it('should display pruned nodes with skip indicator', () => {
+    const prunedNode: DependencyNode = {
+      id: 'pruned-1',
+      type: 'entry',
+      data: {
+        sys: {
+          id: 'pruned-1',
+          type: 'Entry',
+          contentType: { sys: { id: 'offer' } },
+          createdAt: '2024-01-01',
+          updatedAt: '2024-01-02',
+          version: 1
+        },
+        fields: { title: { 'en-US': 'Pruned Offer' } }
+      } as ContentfulEntry,
+      children: [],
+      depth: 1,
+      status: 'pruned',
+      pruneReason: 'content-type-loop'
+    }
+
+    const root: DependencyNode = {
+      id: 'root-1',
+      type: 'entry',
+      data: {
+        sys: {
+          id: 'root-1',
+          type: 'Entry',
+          contentType: { sys: { id: 'page' } },
+          createdAt: '2024-01-01',
+          updatedAt: '2024-01-02',
+          version: 1
+        },
+        fields: { title: { 'en-US': 'Root Page' } }
+      } as ContentfulEntry,
+      children: [prunedNode],
+      depth: 0,
+      status: 'resolved'
+    }
+
+    render(<DependencyTree root={root} />)
+
+    expect(screen.getByText('Pruned Offer')).toBeInTheDocument()
+    expect(screen.getByText('skipped')).toBeInTheDocument()
+    expect(screen.getByText(/content type loop/i)).toBeInTheDocument()
+  })
 })

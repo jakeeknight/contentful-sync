@@ -201,5 +201,69 @@ describe('SyncEngine', () => {
 
       expect(progressUpdates.length).toBeGreaterThan(0)
     })
+
+    it('should skip pruned nodes and track skipped count', async () => {
+      const prunedNode: DependencyNode = {
+        id: 'pruned-1',
+        type: 'entry',
+        data: {
+          sys: {
+            id: 'pruned-1',
+            type: 'Entry',
+            contentType: { sys: { id: 'offer' } },
+            createdAt: '2024-01-01',
+            updatedAt: '2024-01-02',
+            version: 1
+          },
+          fields: {}
+        } as ContentfulEntry,
+        children: [],
+        depth: 1,
+        status: 'pruned',
+        pruneReason: 'content-type-loop'
+      }
+
+      const rootNode: DependencyNode = {
+        id: 'root-1',
+        type: 'entry',
+        data: {
+          sys: {
+            id: 'root-1',
+            type: 'Entry',
+            contentType: { sys: { id: 'page' } },
+            createdAt: '2024-01-01',
+            updatedAt: '2024-01-02',
+            version: 1
+          },
+          fields: {}
+        } as ContentfulEntry,
+        children: [prunedNode],
+        depth: 0,
+        status: 'resolved'
+      }
+
+      const graph: DependencyGraph = {
+        root: rootNode,
+        allNodes: new Map([
+          ['entry:root-1', rootNode],
+          ['entry:pruned-1', prunedNode]
+        ]),
+        entryCount: 2,
+        assetCount: 0
+      }
+
+      const mockClient = {
+        syncEntryToTarget: vi.fn().mockResolvedValue({ success: true }),
+        syncAssetToTarget: vi.fn().mockResolvedValue({ success: true })
+      }
+
+      const engine = new SyncEngine(mockClient as unknown as ContentfulClient)
+      const result = await engine.execute(graph)
+
+      // Should only sync the root, not the pruned node
+      expect(mockClient.syncEntryToTarget).toHaveBeenCalledTimes(1)
+      expect(result.entriesSynced).toBe(1)
+      expect(result.skippedCount).toBe(1)
+    })
   })
 })
