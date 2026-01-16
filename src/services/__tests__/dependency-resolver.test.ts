@@ -179,5 +179,80 @@ describe('DependencyResolver', () => {
 
       await expect(resolver.resolve('nonexistent')).rejects.toThrow('Failed to resolve entry')
     })
+
+    it('should detect and prune content type loops', async () => {
+      // Offer -> OfferHomePage -> Offer (different ID, same type)
+      const offer1: ContentfulEntry = {
+        sys: {
+          id: 'offer-1',
+          type: 'Entry',
+          contentType: { sys: { id: 'offer' } },
+          createdAt: '2024-01-01',
+          updatedAt: '2024-01-02',
+          version: 1
+        },
+        fields: {
+          title: { 'en-US': 'Summer Sale' },
+          parentCategory: {
+            'en-US': { sys: { type: 'Link', linkType: 'Entry', id: 'homepage-1' } }
+          }
+        }
+      }
+
+      const homepage: ContentfulEntry = {
+        sys: {
+          id: 'homepage-1',
+          type: 'Entry',
+          contentType: { sys: { id: 'offerHomePage' } },
+          createdAt: '2024-01-01',
+          updatedAt: '2024-01-02',
+          version: 1
+        },
+        fields: {
+          title: { 'en-US': 'Offers Landing' },
+          featuredOffer: {
+            'en-US': { sys: { type: 'Link', linkType: 'Entry', id: 'offer-2' } }
+          }
+        }
+      }
+
+      const offer2: ContentfulEntry = {
+        sys: {
+          id: 'offer-2',
+          type: 'Entry',
+          contentType: { sys: { id: 'offer' } },
+          createdAt: '2024-01-01',
+          updatedAt: '2024-01-02',
+          version: 1
+        },
+        fields: {
+          title: { 'en-US': 'Winter Sale' }
+        }
+      }
+
+      const mockClient = createMockClient()
+      mockClient.getEntry.mockImplementation(async (id: string) => {
+        if (id === 'offer-1') return { success: true, entry: offer1 }
+        if (id === 'homepage-1') return { success: true, entry: homepage }
+        if (id === 'offer-2') return { success: true, entry: offer2 }
+        return { success: false, error: 'Not found' }
+      })
+
+      const resolver = new DependencyResolver(mockClient as unknown as ContentfulClient)
+      const graph = await resolver.resolve('offer-1')
+
+      // Should have 3 entries total (offer-1, homepage-1, offer-2)
+      expect(graph.entryCount).toBe(3)
+
+      // offer-2 should be marked as pruned
+      const homepageNode = graph.root.children.find(c => c.id === 'homepage-1')
+      expect(homepageNode).toBeDefined()
+
+      const offer2Node = homepageNode?.children.find(c => c.id === 'offer-2')
+      expect(offer2Node).toBeDefined()
+      expect(offer2Node?.status).toBe('pruned')
+      expect(offer2Node?.pruneReason).toBe('content-type-loop')
+      expect(offer2Node?.children).toHaveLength(0) // No further traversal
+    })
   })
 })
