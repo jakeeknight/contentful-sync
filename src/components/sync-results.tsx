@@ -30,6 +30,12 @@ export function SyncResults({ result }: SyncResultsProps) {
         <div className="flex items-center gap-2">
           <Badge variant="asset">{result.assetsSynced} assets synced</Badge>
         </div>
+        {result.skippedCount > 0 && (
+          <div className="flex items-center gap-2">
+            <Badge variant="skipped">{result.skippedCount} skipped</Badge>
+            <span className="text-xs text-slate-500">(content type loops)</span>
+          </div>
+        )}
       </div>
 
       {result.errors.length > 0 && (

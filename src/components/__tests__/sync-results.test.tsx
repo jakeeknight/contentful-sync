@@ -46,4 +46,20 @@ describe('SyncResults', () => {
     render(<SyncResults result={result} />)
     expect(screen.getByText(/1\.5s/i)).toBeInTheDocument()
   })
+
+  it('should display skipped count when entries were skipped', () => {
+    const result: SyncResult = {
+      success: true,
+      entriesSynced: 5,
+      assetsSynced: 2,
+      skippedCount: 3,
+      errors: [],
+      duration: 1500
+    }
+
+    render(<SyncResults result={result} />)
+
+    expect(screen.getByText('3 skipped')).toBeInTheDocument()
+    expect(screen.getByText(/content type loop/i)).toBeInTheDocument()
+  })
 })
