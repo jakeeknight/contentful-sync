@@ -1,15 +1,10 @@
 import { useAppContext } from "../context";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
-import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { Alert } from "./ui/alert";
 import { DependencyTree } from "./dependency-tree";
 
 export function PreviewPanel() {
-  const { state, executeSync } = useAppContext();
-
-  const canSync =
-    state.dependencyGraph && state.targetEnvironment && !state.isSyncing;
+  const { state } = useAppContext();
 
   return (
     <Card>
@@ -37,24 +32,8 @@ export function PreviewPanel() {
             Search for an entry to preview its dependencies
           </div>
         ) : (
-          <div className="space-y-4">
-            <div className="max-h-96 overflow-y-auto scrollbar-thin border border-[#e8e8e8] rounded-lg p-4 bg-[#fafafa]">
-              <DependencyTree root={state.dependencyGraph.root} />
-            </div>
-
-            {!state.targetEnvironment && (
-              <Alert>Select a target environment to sync</Alert>
-            )}
-
-            <div className="flex justify-end">
-              <Button
-                onClick={executeSync}
-                disabled={!canSync}
-                loading={state.isSyncing}
-              >
-                {state.isSyncing ? "Syncing..." : "Sync Selected"}
-              </Button>
-            </div>
+          <div className="max-h-96 overflow-y-auto scrollbar-thin border border-[#e8e8e8] rounded-lg p-4 bg-[#fafafa]">
+            <DependencyTree root={state.dependencyGraph.root} />
           </div>
         )}
       </CardContent>
