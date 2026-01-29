@@ -4,12 +4,13 @@ import { EnvironmentSelector } from "./components/environment-selector";
 import { SearchPanel } from "./components/search-panel";
 import { PreviewPanel } from "./components/preview-panel";
 import { SyncModal } from "./components/sync-modal";
+import { BottomActionBar } from "./components/bottom-action-bar";
 import { Button } from "./components/ui/button";
 
 const STORAGE_KEY = "contentful-sync-credentials";
 
 function AppContent() {
-  const { state, reset } = useAppContext();
+  const { state, reset, executeSync } = useAppContext();
 
   const handleDisconnect = () => {
     localStorage.removeItem(STORAGE_KEY);
@@ -72,7 +73,7 @@ function AppContent() {
   }
 
   return (
-    <div className="min-h-screen bg-[#fafafa]">
+    <div className="min-h-screen bg-[#fafafa] pb-20">
       {/* Header */}
       <header className="bg-white border-b border-[#e8e8e8] sticky top-0 z-10 backdrop-blur-sm bg-white/95">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -123,8 +124,11 @@ function AppContent() {
         )}
       </main>
 
+      {/* Bottom Action Bar */}
+      {state.isConnected && <BottomActionBar />}
+
       {/* Sync Modal */}
-      <SyncModal />
+      <SyncModal onSyncStart={executeSync} />
 
       {/* Footer */}
       <footer className="border-t border-[#e8e8e8] mt-auto py-6">

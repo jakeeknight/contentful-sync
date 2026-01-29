@@ -1,13 +1,60 @@
 import {
+  createContext,
+  useContext,
   useReducer,
   useState,
   useEffect,
   type ReactNode,
 } from "react";
 import { ContentfulClient, DependencyResolver, SyncEngine } from "../services";
-import type { AppState, AppAction } from "./types";
+import type {
+  ContentfulEnvironment,
+  DependencyGraph,
+  SyncProgress,
+  SyncResult,
+} from "../types";
 
 const STORAGE_KEY = "contentful-sync-credentials";
+
+interface AppState {
+  isInitializing: boolean;
+  isConnected: boolean;
+  isConnecting: boolean;
+  connectionError: string | null;
+  environments: ContentfulEnvironment[];
+  sourceEnvironment: string | null;
+  targetEnvironment: string | null;
+  searchedEntryId: string | null;
+  dependencyGraph: DependencyGraph | null;
+  isResolving: boolean;
+  resolveError: string | null;
+  isSyncing: boolean;
+  syncProgress: SyncProgress | null;
+  syncResult: SyncResult | null;
+  syncError: string | null;
+  modalOpen: boolean;
+  hasCompletedSync: boolean;
+}
+
+type AppAction =
+  | { type: "INIT_START" }
+  | { type: "INIT_COMPLETE" }
+  | { type: "CONNECT_START" }
+  | { type: "CONNECT_SUCCESS"; environments: ContentfulEnvironment[] }
+  | { type: "CONNECT_ERROR"; error: string }
+  | { type: "SET_SOURCE_ENV"; env: string }
+  | { type: "SET_TARGET_ENV"; env: string }
+  | { type: "RESOLVE_START"; entryId: string }
+  | { type: "RESOLVE_SUCCESS"; graph: DependencyGraph }
+  | { type: "RESOLVE_ERROR"; error: string }
+  | { type: "SYNC_START" }
+  | { type: "SYNC_PROGRESS"; progress: SyncProgress }
+  | { type: "SYNC_COMPLETE"; result: SyncResult }
+  | { type: "SYNC_ERROR"; error: string }
+  | { type: "OPEN_MODAL" }
+  | { type: "CLOSE_MODAL" }
+  | { type: "RESET_SYNC_STATE" }
+  | { type: "RESET" };
 
 const initialState: AppState = {
   isInitializing: true,
@@ -26,6 +73,7 @@ const initialState: AppState = {
   syncResult: null,
   syncError: null,
   modalOpen: false,
+  hasCompletedSync: false,
 };
 
 function appReducer(state: AppState, action: AppAction): AppState {
@@ -71,13 +119,24 @@ function appReducer(state: AppState, action: AppAction): AppState {
     case "SYNC_PROGRESS":
       return { ...state, syncProgress: action.progress };
     case "SYNC_COMPLETE":
-      return { ...state, isSyncing: false, syncResult: action.result };
+      return { ...state, isSyncing: false, syncResult: action.result, hasCompletedSync: true };
     case "SYNC_ERROR":
       return { ...state, isSyncing: false, syncError: action.error };
     case "OPEN_MODAL":
       return { ...state, modalOpen: true };
     case "CLOSE_MODAL":
       return { ...state, modalOpen: false };
+    case "RESET_SYNC_STATE":
+      return {
+        ...state,
+        modalOpen: false,
+        hasCompletedSync: false,
+        searchedEntryId: null,
+        dependencyGraph: null,
+        syncProgress: null,
+        syncResult: null,
+        syncError: null,
+      };
     case "RESET":
       return initialState;
     default:
@@ -85,7 +144,21 @@ function appReducer(state: AppState, action: AppAction): AppState {
   }
 }
 
-import { AppContext } from "./types";
+interface AppContextValue {
+  state: AppState;
+  client: ContentfulClient;
+  connect: (spaceId: string, accessToken: string) => Promise<boolean>;
+  setSourceEnv: (envId: string) => Promise<void>;
+  setTargetEnv: (envId: string) => Promise<void>;
+  resolveEntry: (entryId: string) => Promise<void>;
+  executeSync: () => Promise<void>;
+  openModal: () => void;
+  closeModal: () => void;
+  resetSyncState: () => void;
+  reset: () => void;
+}
+
+const AppContext = createContext<AppContextValue | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(appReducer, initialState);
@@ -184,6 +257,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     dispatch({ type: "CLOSE_MODAL" });
   };
 
+  const resetSyncState = () => {
+    dispatch({ type: "RESET_SYNC_STATE" });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -194,12 +271,21 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setTargetEnv,
         resolveEntry,
         executeSync,
-        reset,
         openModal,
         closeModal,
+        resetSyncState,
+        reset,
       }}
     >
       {children}
     </AppContext.Provider>
   );
+}
+
+export function useAppContext() {
+  const context = useContext(AppContext);
+  if (!context) {
+    throw new Error("useAppContext must be used within AppProvider");
+  }
+  return context;
 }

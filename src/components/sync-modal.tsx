@@ -1,9 +1,16 @@
 import { useAppContext } from "../context";
 import { X } from "lucide-react";
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
+import { SyncConfirmView } from "./sync-confirm-view";
+import { SyncProgressView } from "./sync-progress-view";
+import { SyncCompleteView } from "./sync-complete-view";
 
-export function SyncModal() {
-  const { state, closeModal } = useAppContext();
+interface SyncModalProps {
+  onSyncStart: () => void;
+}
+
+export function SyncModal({ onSyncStart }: SyncModalProps) {
+  const { state, closeModal, resetSyncState } = useAppContext();
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
@@ -11,18 +18,26 @@ export function SyncModal() {
     }
   };
 
-  const handleEscape = useCallback((e: KeyboardEvent) => {
+  const handleEscape = (e: KeyboardEvent) => {
     if (e.key === "Escape") {
       closeModal();
     }
-  }, [closeModal]);
+  };
 
   useEffect(() => {
     if (state.modalOpen) {
       window.addEventListener("keydown", handleEscape);
       return () => window.removeEventListener("keydown", handleEscape);
     }
-  }, [state.modalOpen, handleEscape]);
+  }, [state.modalOpen]);
+
+  const handleConfirmSync = () => {
+    onSyncStart();
+  };
+
+  const handleNewSync = () => {
+    resetSyncState();
+  };
 
   if (!state.modalOpen) return null;
 
@@ -51,12 +66,22 @@ export function SyncModal() {
 
         {/* Content */}
         <div className="px-6 py-6">
-          {state.isSyncing ? (
-            <div>Progress view (next task)</div>
+          {state.isSyncing && state.syncProgress ? (
+            <SyncProgressView progress={state.syncProgress} />
           ) : state.syncResult ? (
-            <div>Complete view (next task)</div>
+            <SyncCompleteView
+              result={state.syncResult}
+              onClose={closeModal}
+              onNewSync={handleNewSync}
+            />
           ) : (
-            <div>Confirm view (next task)</div>
+            <SyncConfirmView
+              dependencyGraph={state.dependencyGraph}
+              sourceEnvironment={state.sourceEnvironment}
+              targetEnvironment={state.targetEnvironment}
+              onConfirm={handleConfirmSync}
+              onCancel={closeModal}
+            />
           )}
         </div>
       </div>
