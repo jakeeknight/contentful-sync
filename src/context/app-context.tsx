@@ -32,6 +32,8 @@ interface AppState {
   syncProgress: SyncProgress | null;
   syncResult: SyncResult | null;
   syncError: string | null;
+  modalOpen: boolean;
+  hasCompletedSync: boolean;
 }
 
 type AppAction =
@@ -49,6 +51,9 @@ type AppAction =
   | { type: "SYNC_PROGRESS"; progress: SyncProgress }
   | { type: "SYNC_COMPLETE"; result: SyncResult }
   | { type: "SYNC_ERROR"; error: string }
+  | { type: "OPEN_MODAL" }
+  | { type: "CLOSE_MODAL" }
+  | { type: "RESET_SYNC_STATE" }
   | { type: "RESET" };
 
 const initialState: AppState = {
@@ -67,6 +72,8 @@ const initialState: AppState = {
   syncProgress: null,
   syncResult: null,
   syncError: null,
+  modalOpen: false,
+  hasCompletedSync: false,
 };
 
 function appReducer(state: AppState, action: AppAction): AppState {
@@ -112,9 +119,24 @@ function appReducer(state: AppState, action: AppAction): AppState {
     case "SYNC_PROGRESS":
       return { ...state, syncProgress: action.progress };
     case "SYNC_COMPLETE":
-      return { ...state, isSyncing: false, syncResult: action.result };
+      return { ...state, isSyncing: false, syncResult: action.result, hasCompletedSync: true };
     case "SYNC_ERROR":
       return { ...state, isSyncing: false, syncError: action.error };
+    case "OPEN_MODAL":
+      return { ...state, modalOpen: true };
+    case "CLOSE_MODAL":
+      return { ...state, modalOpen: false };
+    case "RESET_SYNC_STATE":
+      return {
+        ...state,
+        modalOpen: false,
+        hasCompletedSync: false,
+        searchedEntryId: null,
+        dependencyGraph: null,
+        syncProgress: null,
+        syncResult: null,
+        syncError: null,
+      };
     case "RESET":
       return initialState;
     default:
@@ -130,6 +152,9 @@ interface AppContextValue {
   setTargetEnv: (envId: string) => Promise<void>;
   resolveEntry: (entryId: string) => Promise<void>;
   executeSync: () => Promise<void>;
+  openModal: () => void;
+  closeModal: () => void;
+  resetSyncState: () => void;
   reset: () => void;
 }
 
@@ -224,6 +249,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
     dispatch({ type: "RESET" });
   };
 
+  const openModal = () => {
+    dispatch({ type: "OPEN_MODAL" });
+  };
+
+  const closeModal = () => {
+    dispatch({ type: "CLOSE_MODAL" });
+  };
+
+  const resetSyncState = () => {
+    dispatch({ type: "RESET_SYNC_STATE" });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -234,6 +271,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setTargetEnv,
         resolveEntry,
         executeSync,
+        openModal,
+        closeModal,
+        resetSyncState,
         reset,
       }}
     >
