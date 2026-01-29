@@ -16,7 +16,7 @@ import type {
 
 const STORAGE_KEY = "contentful-sync-credentials";
 
-interface AppState {
+export interface AppState {
   isInitializing: boolean;
   isConnected: boolean;
   isConnecting: boolean;
@@ -36,7 +36,7 @@ interface AppState {
   hasCompletedSync: boolean;
 }
 
-type AppAction =
+export type AppAction =
   | { type: "INIT_START" }
   | { type: "INIT_COMPLETE" }
   | { type: "CONNECT_START" }
