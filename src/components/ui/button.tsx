@@ -7,11 +7,38 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles = {
-  primary: 'bg-slate-900 text-white hover:bg-slate-800 shadow-sm',
-  secondary: 'bg-white text-slate-900 border border-slate-200 hover:bg-slate-50',
-  destructive: 'bg-red-500 text-white hover:bg-red-600 shadow-sm',
-  info: 'bg-blue-500 text-white hover:bg-blue-600 shadow-sm'
+  primary: `
+    bg-[#1a1a1a] text-white
+    hover:bg-[#2a2a2a]
+    shadow-sm
+    border border-transparent
+  `,
+  secondary: `
+    bg-white text-[#1a1a1a]
+    border border-[#e8e8e8]
+    hover:bg-[#fafafa] hover:border-[#d4d4d4]
+    shadow-sm
+  `,
+  destructive: `
+    bg-[#dc2626] text-white
+    hover:bg-[#b91c1c]
+    shadow-sm
+  `,
+  info: `
+    bg-[#4f46e5] text-white
+    hover:bg-[#4338ca]
+    shadow-sm
+  `
 }
+
+const baseStyles = `
+  inline-flex items-center justify-center gap-2
+  rounded-lg px-4 py-2.5 text-sm font-medium
+  transition-all duration-200 ease-out
+  focus:outline-none focus:ring-2 focus:ring-[#4f46e5] focus:ring-offset-2
+  active:scale-[0.98]
+  font-family var(--font-body)
+`
 
 export function Button({
   children,
@@ -26,12 +53,9 @@ export function Button({
   return (
     <button
       className={`
-        inline-flex items-center justify-center
-        rounded-md px-4 py-2 text-sm font-medium
-        transition-colors
-        focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2
+        ${baseStyles}
         ${variantStyles[variant]}
-        ${isDisabled ? 'opacity-50 cursor-not-allowed' : ''}
+        ${isDisabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''}
         ${className}
       `.trim().replace(/\s+/g, ' ')}
       disabled={isDisabled}
@@ -39,9 +63,10 @@ export function Button({
     >
       {loading && (
         <svg
-          className="animate-spin -ml-1 mr-2 h-4 w-4"
+          className="animate-spin h-4 w-4"
           fill="none"
           viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <circle
             className="opacity-25"
@@ -50,6 +75,8 @@ export function Button({
             r="10"
             stroke="currentColor"
             strokeWidth="4"
+            strokeDasharray="32"
+            strokeDashoffset="32"
           />
           <path
             className="opacity-75"

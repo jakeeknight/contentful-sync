@@ -3,6 +3,7 @@ import {
   useContext,
   useReducer,
   useState,
+  useEffect,
   type ReactNode,
 } from "react";
 import { ContentfulClient, DependencyResolver, SyncEngine } from "../services";
@@ -13,7 +14,10 @@ import type {
   SyncResult,
 } from "../types";
 
+const STORAGE_KEY = "contentful-sync-credentials";
+
 interface AppState {
+  isInitializing: boolean;
   isConnected: boolean;
   isConnecting: boolean;
   connectionError: string | null;
@@ -31,6 +35,8 @@ interface AppState {
 }
 
 type AppAction =
+  | { type: "INIT_START" }
+  | { type: "INIT_COMPLETE" }
   | { type: "CONNECT_START" }
   | { type: "CONNECT_SUCCESS"; environments: ContentfulEnvironment[] }
   | { type: "CONNECT_ERROR"; error: string }
@@ -46,6 +52,7 @@ type AppAction =
   | { type: "RESET" };
 
 const initialState: AppState = {
+  isInitializing: true,
   isConnected: false,
   isConnecting: false,
   connectionError: null,
@@ -64,6 +71,10 @@ const initialState: AppState = {
 
 function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
+    case "INIT_START":
+      return { ...state, isInitializing: true };
+    case "INIT_COMPLETE":
+      return { ...state, isInitializing: false };
     case "CONNECT_START":
       return { ...state, isConnecting: true, connectionError: null };
     case "CONNECT_SUCCESS":
@@ -136,15 +147,36 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const result = await client.connect(spaceId, accessToken);
     if (result.success && result.environments) {
       dispatch({ type: "CONNECT_SUCCESS", environments: result.environments });
+      dispatch({ type: "INIT_COMPLETE" });
       return true;
     } else {
       dispatch({
         type: "CONNECT_ERROR",
         error: result.error || "Connection failed",
       });
+      dispatch({ type: "INIT_COMPLETE" });
       return false;
     }
   };
+
+  // Check for saved credentials on mount and auto-connect
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const { spaceId: savedSpaceId, accessToken: savedAccessToken } =
+          JSON.parse(saved);
+        if (savedSpaceId && savedAccessToken) {
+          connect(savedSpaceId, savedAccessToken);
+          return;
+        }
+      } catch {
+        // Invalid stored data, ignore
+      }
+    }
+    // No valid credentials found, complete initialization
+    dispatch({ type: "INIT_COMPLETE" });
+  }, []);
 
   const setSourceEnv = async (envId: string) => {
     await client.setSourceEnvironment(envId);

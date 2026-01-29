@@ -48,7 +48,16 @@ export class ContentfulClient {
 
       return { success: true, environments }
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unknown error'
+      // Contentful SDK returns errors with message as JSON string
+      let message = 'Unknown error'
+      if (error instanceof Error) {
+        try {
+          const parsed = JSON.parse(error.message)
+          message = parsed.message || error.message
+        } catch {
+          message = error.message
+        }
+      }
       return { success: false, error: message }
     }
   }
@@ -108,7 +117,15 @@ export class ContentfulClient {
         }
       }
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unknown error'
+      let message = 'Unknown error'
+      if (error instanceof Error) {
+        try {
+          const parsed = JSON.parse(error.message)
+          message = parsed.message || error.message
+        } catch {
+          message = error.message
+        }
+      }
       return { success: false, error: message }
     }
   }
@@ -135,7 +152,15 @@ export class ContentfulClient {
         }
       }
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unknown error'
+      let message = 'Unknown error'
+      if (error instanceof Error) {
+        try {
+          const parsed = JSON.parse(error.message)
+          message = parsed.message || error.message
+        } catch {
+          message = error.message
+        }
+      }
       return { success: false, error: message }
     }
   }
@@ -167,7 +192,15 @@ export class ContentfulClient {
 
       return { success: true }
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unknown error'
+      let message = 'Unknown error'
+      if (error instanceof Error) {
+        try {
+          const parsed = JSON.parse(error.message)
+          message = parsed.message || error.message
+        } catch {
+          message = error.message
+        }
+      }
       return { success: false, error: message }
     }
   }
@@ -203,7 +236,15 @@ export class ContentfulClient {
 
       return { success: true }
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unknown error'
+      let message = 'Unknown error'
+      if (error instanceof Error) {
+        try {
+          const parsed = JSON.parse(error.message)
+          message = parsed.message || error.message
+        } catch {
+          message = error.message
+        }
+      }
       return { success: false, error: message }
     }
   }

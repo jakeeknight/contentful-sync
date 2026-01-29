@@ -8,18 +8,22 @@ interface AlertProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const variantStyles: Record<AlertVariant, string> = {
-  default: 'bg-slate-50 border-slate-200 text-slate-900',
-  success: 'bg-green-50 border-green-200 text-green-900',
-  error: 'bg-red-50 border-red-200 text-red-900',
-  warning: 'bg-yellow-50 border-yellow-200 text-yellow-900',
-  info: 'bg-blue-50 border-blue-200 text-blue-600'
+  default: 'bg-[#fafafa] border-[#e8e8e8] text-[#1a1a1a]',
+  success: 'bg-[#ecfdf3] border-[#d1fae5] text-[#047857]',
+  error: 'bg-[#fef2f2] border-[#fecaca] text-[#dc2626]',
+  warning: 'bg-[#fffbeb] border-[#fde68a] text-[#d97706]',
+  info: 'bg-[#f0f9ff] border-[#bae6fd] text-[#0284c7]'
 }
 
 export function Alert({ children, variant = 'default', className = '', ...props }: AlertProps) {
   return (
     <div
       role="alert"
-      className={`rounded-md border p-4 text-sm ${variantStyles[variant]} ${className}`}
+      className={`
+        rounded-lg border p-4 text-sm
+        ${variantStyles[variant]}
+        ${className}
+      `.trim().replace(/\s+/g, ' ')}
       {...props}
     >
       {children}

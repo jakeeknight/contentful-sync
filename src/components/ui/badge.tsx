@@ -8,18 +8,24 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const variantStyles: Record<BadgeVariant, string> = {
-  default: 'bg-slate-100 text-slate-700',
-  entry: 'bg-blue-100 text-blue-700',
-  asset: 'bg-green-100 text-green-700',
-  success: 'bg-green-100 text-green-700',
-  error: 'bg-red-100 text-red-700',
-  skipped: 'bg-amber-100 text-amber-700'
+  default: 'bg-[#f5f5f5] text-[#6b6b6b] border border-[#e8e8e8]',
+  entry: 'bg-[#eef2ff] text-[#4f46e5] border border-[#e0e7ff]',
+  asset: 'bg-[#ecfdf3] text-[#047857] border border-[#d1fae5]',
+  success: 'bg-[#ecfdf3] text-[#047857] border border-[#d1fae5]',
+  error: 'bg-[#fef2f2] text-[#dc2626] border border-[#fecaca]',
+  skipped: 'bg-[#fffbeb] text-[#d97706] border border-[#fde68a]'
 }
 
 export function Badge({ children, variant = 'default', className = '', ...props }: BadgeProps) {
   return (
     <span
-      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${variantStyles[variant]} ${className}`}
+      className={`
+        inline-flex items-center
+        rounded-full px-2.5 py-1
+        text-xs font-medium
+        ${variantStyles[variant]}
+        ${className}
+      `.trim().replace(/\s+/g, ' ')}
       {...props}
     >
       {children}

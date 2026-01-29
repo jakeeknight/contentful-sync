@@ -15,26 +15,11 @@ vi.mock('./services', () => ({
 describe('App', () => {
   it('renders the application title', () => {
     render(<App />)
-    expect(screen.getByText(/contentful sync tool/i)).toBeInTheDocument()
+    expect(screen.getByText(/contentful sync/i)).toBeInTheDocument()
   })
 
-  it('renders configuration panel', () => {
+  it('renders connect to contentful panel when not connected', () => {
     render(<App />)
-    expect(screen.getByText(/configuration/i)).toBeInTheDocument()
-  })
-
-  it('renders search panel', () => {
-    render(<App />)
-    expect(screen.getByText(/search entry/i)).toBeInTheDocument()
-  })
-
-  it('renders preview panel', () => {
-    render(<App />)
-    expect(screen.getByRole('heading', { name: /preview/i })).toBeInTheDocument()
-  })
-
-  it('renders status panel', () => {
-    render(<App />)
-    expect(screen.getByText(/status/i)).toBeInTheDocument()
+    expect(screen.getByText(/connect to contentful/i)).toBeInTheDocument()
   })
 })
