@@ -1,0 +1,86 @@
+{
+    "metadata": {
+        "tags": [],
+        "concepts": []
+    },
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dwk8f4v6idyx"
+            }
+        },
+        "id": "50wYgcGKfMlS4N9bpmThTu",
+        "type": "Entry",
+        "createdAt": "2026-01-29T09:11:11.951Z",
+        "updatedAt": "2026-01-29T09:11:24.958Z",
+        "environment": {
+            "sys": {
+                "id": "dev",
+                "type": "Link",
+                "linkType": "Environment"
+            }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2026-01-29T09:11:24.958Z",
+        "firstPublishedAt": "2026-01-29T09:11:24.958Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "publishedCounter": 1,
+        "version": 4,
+        "publishedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "fieldStatus": {
+            "*": {
+                "en-US": "published",
+                "nl": "published"
+            }
+        },
+        "automationTags": [],
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "offersSlider"
+            }
+        },
+        "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/entries/50wYgcGKfMlS4N9bpmThTu"
+    },
+    "fields": {
+        "identifier": {
+            "en-US": "Offer Slider 1"
+        },
+        "title": {
+            "en-US": "Offer Slider"
+        },
+        "offers": {
+            "en-US": [
+                {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "Entry",
+                        "id": "57qn50pDXga7Xd9ya2YaK2"
+                    }
+                }
+            ]
+        }
+    }
+}

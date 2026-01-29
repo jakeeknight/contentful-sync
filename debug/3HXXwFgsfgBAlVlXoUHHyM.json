@@ -1,0 +1,117 @@
+{
+    "metadata": {
+        "tags": [],
+        "concepts": []
+    },
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dwk8f4v6idyx"
+            }
+        },
+        "id": "3HXXwFgsfgBAlVlXoUHHyM",
+        "type": "Entry",
+        "createdAt": "2026-01-29T09:07:08.218Z",
+        "updatedAt": "2026-01-29T09:07:22.126Z",
+        "environment": {
+            "sys": {
+                "id": "dev",
+                "type": "Link",
+                "linkType": "Environment"
+            }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2026-01-29T09:07:22.126Z",
+        "firstPublishedAt": "2026-01-29T09:07:22.126Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "publishedCounter": 1,
+        "version": 4,
+        "publishedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "fieldStatus": {
+            "*": {
+                "en-US": "published",
+                "nl": "published"
+            }
+        },
+        "automationTags": [],
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "offerDetails"
+            }
+        },
+        "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/entries/3HXXwFgsfgBAlVlXoUHHyM"
+    },
+    "fields": {
+        "identifier": {
+            "en-US": "3001-offer-details-fr"
+        },
+        "mainImage": {
+            "en-US": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Entry",
+                    "id": "6T06reseFgAF2iRjCGOGw1"
+                }
+            }
+        },
+        "title": {
+            "en-US": "Big Exclusive Offer - French"
+        },
+        "description": {
+            "en-US": "Big Exclusive Offer Description - French"
+        },
+        "summary": {
+            "en-US": "Big Exclusive Offer Summary - French"
+        },
+        "ctaButton1": {
+            "en-US": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Entry",
+                    "id": "16cNIvmkpooliJkzCkm3mU"
+                }
+            }
+        },
+        "ctaButton2": {
+            "en-US": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Entry",
+                    "id": "11QJHHiH7RPg1j6WG0kwKw"
+                }
+            }
+        },
+        "termsAndConditions": {
+            "en-US": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Entry",
+                    "id": "3MbMCKteQjTboGbctb0bGL"
+                }
+            }
+        }
+    }
+}

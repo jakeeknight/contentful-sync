@@ -1,0 +1,86 @@
+{
+    "metadata": {
+        "tags": [],
+        "concepts": []
+    },
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dwk8f4v6idyx"
+            }
+        },
+        "id": "121zbowVa7HTmeX0HOY1yM",
+        "type": "Entry",
+        "createdAt": "2023-10-26T18:44:46.162Z",
+        "updatedAt": "2025-04-26T07:14:30.202Z",
+        "environment": {
+            "sys": {
+                "id": "dev",
+                "type": "Link",
+                "linkType": "Environment"
+            }
+        },
+        "publishedVersion": 11,
+        "publishedAt": "2025-04-26T07:14:30.202Z",
+        "firstPublishedAt": "2023-10-26T18:46:13.865Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "publishedCounter": 2,
+        "version": 12,
+        "publishedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "fieldStatus": {
+            "*": {
+                "en-US": "published"
+            }
+        },
+        "automationTags": [],
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "pageMetadata"
+            }
+        },
+        "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/entries/121zbowVa7HTmeX0HOY1yM"
+    },
+    "fields": {
+        "id": {
+            "en-US": "Home Page Metadata"
+        },
+        "title": {
+            "en-US": "Home Page"
+        },
+        "description": {
+            "en-US": "This is a home page"
+        },
+        "keywords": {
+            "en-US": "This, is, a, home, page"
+        },
+        "noIndex": {
+            "en-US": false
+        },
+        "noFollow": {
+            "en-US": false
+        }
+    }
+}

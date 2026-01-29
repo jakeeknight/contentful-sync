@@ -1,0 +1,72 @@
+{
+    "metadata": {
+        "tags": [],
+        "concepts": []
+    },
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dwk8f4v6idyx"
+            }
+        },
+        "id": "3fcpAx7lCfRedNzASLerBv",
+        "type": "Entry",
+        "createdAt": "2023-10-23T19:58:34.151Z",
+        "updatedAt": "2023-10-23T19:59:20.332Z",
+        "environment": {
+            "sys": {
+                "id": "dev",
+                "type": "Link",
+                "linkType": "Environment"
+            }
+        },
+        "publishedVersion": 6,
+        "publishedAt": "2023-10-23T19:59:20.332Z",
+        "firstPublishedAt": "2023-10-23T19:59:20.332Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "publishedCounter": 1,
+        "version": 7,
+        "publishedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "automationTags": [],
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "link"
+            }
+        },
+        "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/entries/3fcpAx7lCfRedNzASLerBv"
+    },
+    "fields": {
+        "id": {
+            "en-US": "homepage"
+        },
+        "label": {
+            "en-US": "Home"
+        },
+        "url": {
+            "en-US": "http://localhost:8080/"
+        }
+    }
+}

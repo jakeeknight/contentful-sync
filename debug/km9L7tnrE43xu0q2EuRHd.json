@@ -1,0 +1,80 @@
+{
+    "metadata": {
+        "tags": [],
+        "concepts": []
+    },
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dwk8f4v6idyx"
+            }
+        },
+        "id": "km9L7tnrE43xu0q2EuRHd",
+        "type": "Asset",
+        "createdAt": "2023-10-23T20:07:07.236Z",
+        "updatedAt": "2026-01-15T08:41:52.386Z",
+        "environment": {
+            "sys": {
+                "id": "dev",
+                "type": "Link",
+                "linkType": "Environment"
+            }
+        },
+        "publishedVersion": 4,
+        "publishedAt": "2023-10-23T20:07:47.290Z",
+        "firstPublishedAt": "2023-10-23T20:07:47.290Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "publishedCounter": 1,
+        "version": 6,
+        "publishedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "fieldStatus": {
+            "*": {
+                "en-US": "changed"
+            }
+        },
+        "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/assets/km9L7tnrE43xu0q2EuRHd"
+    },
+    "fields": {
+        "title": {
+            "en-US": "bet365-logo"
+        },
+        "description": {
+            "en-US": ""
+        },
+        "file": {
+            "en-US": {
+                "url": "//images.ctfassets.net/dwk8f4v6idyx/km9L7tnrE43xu0q2EuRHd/1122f27f6f7d5c6e7ed23794ba423744/svg.svg",
+                "details": {
+                    "size": 5587,
+                    "image": {
+                        "width": 138,
+                        "height": 30
+                    }
+                },
+                "fileName": "svg.svg",
+                "contentType": "image/svg+xml"
+            }
+        }
+    }
+}

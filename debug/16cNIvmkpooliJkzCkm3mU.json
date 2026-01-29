@@ -1,0 +1,72 @@
+{
+    "metadata": {
+        "tags": [],
+        "concepts": []
+    },
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dwk8f4v6idyx"
+            }
+        },
+        "id": "16cNIvmkpooliJkzCkm3mU",
+        "type": "Entry",
+        "createdAt": "2023-10-23T19:59:30.835Z",
+        "updatedAt": "2023-10-23T19:59:45.831Z",
+        "environment": {
+            "sys": {
+                "id": "dev",
+                "type": "Link",
+                "linkType": "Environment"
+            }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2023-10-23T19:59:45.831Z",
+        "firstPublishedAt": "2023-10-23T19:59:45.831Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "publishedCounter": 1,
+        "version": 4,
+        "publishedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "automationTags": [],
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "link"
+            }
+        },
+        "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/entries/16cNIvmkpooliJkzCkm3mU"
+    },
+    "fields": {
+        "id": {
+            "en-US": "signup"
+        },
+        "label": {
+            "en-US": "Sign Up"
+        },
+        "url": {
+            "en-US": "http://localhost:8080/signup"
+        }
+    }
+}

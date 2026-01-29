@@ -77,7 +77,9 @@ function TreeNode({ node, level }: TreeNodeProps) {
         {isPruned ? (
           <>
             <Badge variant="skipped">skipped</Badge>
-            <span className="text-amber-600 text-xs">content type loop</span>
+            <span className="text-amber-600 text-xs">
+              {node.pruneReason === 'entry-loop' ? 'entry loop' : 'content type loop'}
+            </span>
           </>
         ) : (
           <Badge variant={node.type === 'entry' ? 'entry' : 'asset'}>

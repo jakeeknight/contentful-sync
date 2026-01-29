@@ -1,19 +1,20 @@
-import { AppProvider, useAppContext } from './context'
-import { ConfigurationPanel } from './components/configuration-panel'
-import { SearchPanel } from './components/search-panel'
-import { PreviewPanel } from './components/preview-panel'
-import { StatusPanel } from './components/status-panel'
-import { Button } from './components/ui/button'
+import { AppProvider, useAppContext } from "./context";
+import { ConfigurationPanel } from "./components/configuration-panel";
+import { EnvironmentSelector } from "./components/environment-selector";
+import { SearchPanel } from "./components/search-panel";
+import { PreviewPanel } from "./components/preview-panel";
+import { StatusPanel } from "./components/status-panel";
+import { Button } from "./components/ui/button";
 
-const STORAGE_KEY = 'contentful-sync-credentials'
+const STORAGE_KEY = "contentful-sync-credentials";
 
 function AppContent() {
-  const { state, reset } = useAppContext()
+  const { state, reset } = useAppContext();
 
   const handleDisconnect = () => {
-    localStorage.removeItem(STORAGE_KEY)
-    reset()
-  }
+    localStorage.removeItem(STORAGE_KEY);
+    reset();
+  };
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -33,20 +34,23 @@ function AppContent() {
 
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-6 py-6 space-y-6">
-        <ConfigurationPanel />
-        <SearchPanel />
-        <PreviewPanel />
-        <StatusPanel />
+        {!state.isConnected && <ConfigurationPanel />}
+        {state.isConnected && (
+          <>
+            <EnvironmentSelector />
+            <SearchPanel />
+            <PreviewPanel />
+            <StatusPanel />
+          </>
+        )}
       </main>
 
       {/* Footer */}
       <footer className="bg-white border-t border-slate-200 mt-auto">
-        <div className="max-w-6xl mx-auto px-6 py-4 text-center text-sm text-slate-500">
-          Sync entries between Contentful environments with full dependency resolution
-        </div>
+        <div className="max-w-6xl mx-auto px-6 py-4 text-center text-sm text-slate-500"></div>
       </footer>
     </div>
-  )
+  );
 }
 
 function App() {
@@ -54,7 +58,7 @@ function App() {
     <AppProvider>
       <AppContent />
     </AppProvider>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "dwk8f4v6idyx"
+      }
+    },
+    "id": "4HaodWpHzH20pYhYPnWa6K",
+    "type": "Entry",
+    "createdAt": "2023-10-23T19:58:18.422Z",
+    "updatedAt": "2025-04-26T06:13:46.136Z",
+    "environment": {
+      "sys": {
+        "id": "dev",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 15,
+    "publishedAt": "2025-04-26T06:13:46.136Z",
+    "firstPublishedAt": "2023-10-23T20:00:39.116Z",
+    "createdBy": {
+      "sys": {
+        "type": "Link",
+        "linkType": "User",
+        "id": "7Ms5RWtacLWmZjKDGUBoxV"
+      }
+    },
+    "updatedBy": {
+      "sys": {
+        "type": "Link",
+        "linkType": "User",
+        "id": "7Ms5RWtacLWmZjKDGUBoxV"
+      }
+    },
+    "publishedCounter": 6,
+    "version": 16,
+    "publishedBy": {
+      "sys": {
+        "type": "Link",
+        "linkType": "User",
+        "id": "7Ms5RWtacLWmZjKDGUBoxV"
+      }
+    },
+    "fieldStatus": {
+      "*": {
+        "en-US": "published"
+      }
+    },
+    "automationTags": [],
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "header"
+      }
+    },
+    "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/entries/4HaodWpHzH20pYhYPnWa6K"
+  },
+  "fields": {
+    "title": {
+      "en-US": "Offers Page Header"
+    },
+    "logIn": {
+      "en-US": {
+        "sys": {
+          "type": "Link",
+          "linkType": "Entry",
+          "id": "3fcpAx7lCfRedNzASLerBv"
+        }
+      }
+    },
+    "join": {
+      "en-US": {
+        "sys": {
+          "type": "Link",
+          "linkType": "Entry",
+          "id": "16cNIvmkpooliJkzCkm3mU"
+        }
+      }
+    },
+    "logo": {
+      "en-US": {
+        "sys": {
+          "type": "Link",
+          "linkType": "Entry",
+          "id": "3ktmSopxxyQo7e8yt7swoX"
+        }
+      }
+    }
+  }
+}

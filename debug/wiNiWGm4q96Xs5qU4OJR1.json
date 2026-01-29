@@ -1,0 +1,80 @@
+{
+    "metadata": {
+        "tags": [],
+        "concepts": []
+    },
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dwk8f4v6idyx"
+            }
+        },
+        "id": "wiNiWGm4q96Xs5qU4OJR1",
+        "type": "Asset",
+        "createdAt": "2025-04-26T07:04:03.215Z",
+        "updatedAt": "2025-04-26T07:04:24.760Z",
+        "environment": {
+            "sys": {
+                "id": "dev",
+                "type": "Link",
+                "linkType": "Environment"
+            }
+        },
+        "publishedVersion": 4,
+        "publishedAt": "2025-04-26T07:04:24.760Z",
+        "firstPublishedAt": "2025-04-26T07:04:24.760Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "publishedCounter": 1,
+        "version": 5,
+        "publishedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "fieldStatus": {
+            "*": {
+                "en-US": "published"
+            }
+        },
+        "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/assets/wiNiWGm4q96Xs5qU4OJR1"
+    },
+    "fields": {
+        "title": {
+            "en-US": "Player Image"
+        },
+        "description": {
+            "en-US": "tbc"
+        },
+        "file": {
+            "en-US": {
+                "url": "//images.ctfassets.net/dwk8f4v6idyx/wiNiWGm4q96Xs5qU4OJR1/c0bdf5b1df2650259d7919f4c9cbcc97/playerImage.jpeg",
+                "details": {
+                    "size": 112323,
+                    "image": {
+                        "width": 1200,
+                        "height": 1500
+                    }
+                },
+                "fileName": "playerImage.jpeg",
+                "contentType": "image/jpeg"
+            }
+        }
+    }
+}

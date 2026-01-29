@@ -1,0 +1,72 @@
+{
+    "metadata": {
+        "tags": [],
+        "concepts": []
+    },
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dwk8f4v6idyx"
+            }
+        },
+        "id": "11QJHHiH7RPg1j6WG0kwKw",
+        "type": "Entry",
+        "createdAt": "2023-10-23T20:10:13.221Z",
+        "updatedAt": "2023-10-23T20:10:58.011Z",
+        "environment": {
+            "sys": {
+                "id": "dev",
+                "type": "Link",
+                "linkType": "Environment"
+            }
+        },
+        "publishedVersion": 5,
+        "publishedAt": "2023-10-23T20:10:58.011Z",
+        "firstPublishedAt": "2023-10-23T20:10:58.011Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "publishedCounter": 1,
+        "version": 6,
+        "publishedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "automationTags": [],
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "link"
+            }
+        },
+        "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/entries/11QJHHiH7RPg1j6WG0kwKw"
+    },
+    "fields": {
+        "id": {
+            "en-US": "view-promotions"
+        },
+        "label": {
+            "en-US": "View Promotions"
+        },
+        "url": {
+            "en-US": "https://extra.bet365.com/promotions/en/soccer"
+        }
+    }
+}

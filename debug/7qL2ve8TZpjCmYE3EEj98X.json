@@ -1,0 +1,99 @@
+{
+    "metadata": {
+        "tags": [],
+        "concepts": []
+    },
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dwk8f4v6idyx"
+            }
+        },
+        "id": "7qL2ve8TZpjCmYE3EEj98X",
+        "type": "Entry",
+        "createdAt": "2026-01-29T09:04:46.609Z",
+        "updatedAt": "2026-01-29T09:07:37.935Z",
+        "environment": {
+            "sys": {
+                "id": "dev",
+                "type": "Link",
+                "linkType": "Environment"
+            }
+        },
+        "publishedVersion": 5,
+        "publishedAt": "2026-01-29T09:07:37.935Z",
+        "firstPublishedAt": "2026-01-29T09:07:37.935Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "publishedCounter": 1,
+        "version": 6,
+        "publishedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "fieldStatus": {
+            "*": {
+                "en-US": "published",
+                "nl": "published"
+            }
+        },
+        "automationTags": [],
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "offerLocation"
+            }
+        },
+        "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/entries/7qL2ve8TZpjCmYE3EEj98X"
+    },
+    "fields": {
+        "identifier": {
+            "en-US": "3001-offerlocation"
+        },
+        "default": {
+            "en-US": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Entry",
+                    "id": "5kNChg1aEm9ninfxkQ9qZ1"
+                }
+            }
+        },
+        "en": {
+            "en-US": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Entry",
+                    "id": "5kNChg1aEm9ninfxkQ9qZ1"
+                }
+            }
+        },
+        "fr": {
+            "en-US": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Entry",
+                    "id": "3HXXwFgsfgBAlVlXoUHHyM"
+                }
+            }
+        }
+    }
+}

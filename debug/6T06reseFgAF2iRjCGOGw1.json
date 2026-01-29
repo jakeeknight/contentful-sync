@@ -1,0 +1,83 @@
+{
+    "metadata": {
+        "tags": [],
+        "concepts": []
+    },
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dwk8f4v6idyx"
+            }
+        },
+        "id": "6T06reseFgAF2iRjCGOGw1",
+        "type": "Entry",
+        "createdAt": "2025-04-26T07:03:56.671Z",
+        "updatedAt": "2025-04-26T07:04:31.740Z",
+        "environment": {
+            "sys": {
+                "id": "dev",
+                "type": "Link",
+                "linkType": "Environment"
+            }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2025-04-26T07:04:31.740Z",
+        "firstPublishedAt": "2025-04-26T07:04:31.740Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "publishedCounter": 1,
+        "version": 4,
+        "publishedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "fieldStatus": {
+            "*": {
+                "en-US": "published"
+            }
+        },
+        "automationTags": [],
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "image"
+            }
+        },
+        "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/entries/6T06reseFgAF2iRjCGOGw1"
+    },
+    "fields": {
+        "id": {
+            "en-US": "Player Image"
+        },
+        "image": {
+            "en-US": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Asset",
+                    "id": "wiNiWGm4q96Xs5qU4OJR1"
+                }
+            }
+        },
+        "altText": {
+            "en-US": "player-image"
+        }
+    }
+}

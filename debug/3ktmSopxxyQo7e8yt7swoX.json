@@ -1,0 +1,78 @@
+{
+    "metadata": {
+        "tags": [],
+        "concepts": []
+    },
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dwk8f4v6idyx"
+            }
+        },
+        "id": "3ktmSopxxyQo7e8yt7swoX",
+        "type": "Entry",
+        "createdAt": "2023-10-27T06:33:53.993Z",
+        "updatedAt": "2023-10-27T06:34:09.906Z",
+        "environment": {
+            "sys": {
+                "id": "dev",
+                "type": "Link",
+                "linkType": "Environment"
+            }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2023-10-27T06:34:09.906Z",
+        "firstPublishedAt": "2023-10-27T06:34:09.906Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "publishedCounter": 1,
+        "version": 4,
+        "publishedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "automationTags": [],
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "image"
+            }
+        },
+        "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/entries/3ktmSopxxyQo7e8yt7swoX"
+    },
+    "fields": {
+        "id": {
+            "en-US": "bet365 logo"
+        },
+        "image": {
+            "en-US": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Asset",
+                    "id": "km9L7tnrE43xu0q2EuRHd"
+                }
+            }
+        },
+        "altText": {
+            "en-US": "bet365"
+        }
+    }
+}

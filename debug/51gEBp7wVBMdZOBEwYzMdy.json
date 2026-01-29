@@ -1,0 +1,113 @@
+{
+    "metadata": {
+        "tags": [],
+        "concepts": []
+    },
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dwk8f4v6idyx"
+            }
+        },
+        "id": "51gEBp7wVBMdZOBEwYzMdy",
+        "type": "Entry",
+        "createdAt": "2026-01-15T08:41:58.212Z",
+        "updatedAt": "2026-01-29T09:11:27.516Z",
+        "environment": {
+            "sys": {
+                "id": "dev",
+                "type": "Link",
+                "linkType": "Environment"
+            }
+        },
+        "publishedVersion": 13,
+        "publishedAt": "2026-01-29T09:11:27.516Z",
+        "firstPublishedAt": "2026-01-29T09:02:25.257Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "publishedCounter": 2,
+        "version": 14,
+        "publishedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "fieldStatus": {
+            "*": {
+                "en-US": "published",
+                "nl": "published"
+            }
+        },
+        "automationTags": [],
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "homePage"
+            }
+        },
+        "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/entries/51gEBp7wVBMdZOBEwYzMdy"
+    },
+    "fields": {
+        "identifier": {
+            "en-US": "Home"
+        },
+        "slug": {
+            "en-US": "home"
+        },
+        "header": {
+            "en-US": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Entry",
+                    "id": "4HaodWpHzH20pYhYPnWa6K"
+                }
+            }
+        },
+        "content": {
+            "en-US": [
+                {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "Entry",
+                        "id": "50wYgcGKfMlS4N9bpmThTu"
+                    }
+                }
+            ]
+        },
+        "footer": {
+            "en-US": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Entry",
+                    "id": "3QWJw1jVwvo5DiWQ6Jy2Gt"
+                }
+            }
+        },
+        "metaData": {
+            "en-US": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Entry",
+                    "id": "121zbowVa7HTmeX0HOY1yM"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,99 @@
+{
+    "metadata": {
+        "tags": [],
+        "concepts": []
+    },
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dwk8f4v6idyx"
+            }
+        },
+        "id": "57qn50pDXga7Xd9ya2YaK2",
+        "type": "Entry",
+        "createdAt": "2023-10-23T20:11:20.963Z",
+        "updatedAt": "2026-01-29T09:08:53.952Z",
+        "environment": {
+            "sys": {
+                "id": "dev",
+                "type": "Link",
+                "linkType": "Environment"
+            }
+        },
+        "publishedVersion": 13,
+        "publishedAt": "2026-01-29T09:08:53.952Z",
+        "firstPublishedAt": "2023-10-26T19:00:51.353Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "publishedCounter": 3,
+        "version": 14,
+        "publishedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "fieldStatus": {
+            "*": {
+                "en-US": "published",
+                "nl": "published"
+            }
+        },
+        "automationTags": [],
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "offer"
+            }
+        },
+        "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/entries/57qn50pDXga7Xd9ya2YaK2"
+    },
+    "fields": {
+        "id": {
+            "en-US": "3001-offer-1"
+        },
+        "slug": {
+            "en-US": "3001-offer-1"
+        },
+        "parent": {
+            "en-US": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Entry",
+                    "id": "51gEBp7wVBMdZOBEwYzMdy"
+                }
+            }
+        },
+        "offerLocation": {
+            "en-US": {
+                "sys": {
+                    "type": "Link",
+                    "linkType": "Entry",
+                    "id": "7qL2ve8TZpjCmYE3EEj98X"
+                }
+            }
+        },
+        "offerId": {
+            "en-US": "123"
+        },
+        "showForAll": {
+            "en-US": true
+        }
+    }
+}

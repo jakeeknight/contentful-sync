@@ -1,14 +1,15 @@
-import { useAppContext } from '../context'
-import { Card, CardHeader, CardTitle, CardContent } from './ui/card'
-import { Button } from './ui/button'
-import { Badge } from './ui/badge'
-import { Alert } from './ui/alert'
-import { DependencyTree } from './dependency-tree'
+import { useAppContext } from "../context";
+import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
+import { Alert } from "./ui/alert";
+import { DependencyTree } from "./dependency-tree";
 
 export function PreviewPanel() {
-  const { state, executeSync } = useAppContext()
+  const { state, executeSync } = useAppContext();
 
-  const canSync = state.dependencyGraph && state.targetEnvironment && !state.isSyncing
+  const canSync =
+    state.dependencyGraph && state.targetEnvironment && !state.isSyncing;
 
   return (
     <Card>
@@ -48,12 +49,12 @@ export function PreviewPanel() {
                 disabled={!canSync}
                 loading={state.isSyncing}
               >
-                {state.isSyncing ? 'Syncing...' : 'Sync Selected'}
+                {state.isSyncing ? "Syncing..." : "Sync Selected"}
               </Button>
             </div>
           </div>
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

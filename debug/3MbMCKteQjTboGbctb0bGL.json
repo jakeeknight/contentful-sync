@@ -1,0 +1,92 @@
+{
+    "metadata": {
+        "tags": [],
+        "concepts": []
+    },
+    "sys": {
+        "space": {
+            "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "dwk8f4v6idyx"
+            }
+        },
+        "id": "3MbMCKteQjTboGbctb0bGL",
+        "type": "Entry",
+        "createdAt": "2026-01-29T09:06:30.745Z",
+        "updatedAt": "2026-01-29T09:06:43.854Z",
+        "environment": {
+            "sys": {
+                "id": "dev",
+                "type": "Link",
+                "linkType": "Environment"
+            }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2026-01-29T09:06:43.854Z",
+        "firstPublishedAt": "2026-01-29T09:06:43.854Z",
+        "createdBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "updatedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "publishedCounter": 1,
+        "version": 4,
+        "publishedBy": {
+            "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7Ms5RWtacLWmZjKDGUBoxV"
+            }
+        },
+        "fieldStatus": {
+            "*": {
+                "en-US": "published",
+                "nl": "published"
+            }
+        },
+        "automationTags": [],
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "termsAndConditions"
+            }
+        },
+        "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/entries/3MbMCKteQjTboGbctb0bGL"
+    },
+    "fields": {
+        "identifier": {
+            "en-US": "General T&Cs"
+        },
+        "content": {
+            "en-US": {
+                "nodeType": "document",
+                "data": {},
+                "content": [
+                    {
+                        "nodeType": "paragraph",
+                        "data": {},
+                        "content": [
+                            {
+                                "nodeType": "text",
+                                "value": "T&CS fdsfdsadassd",
+                                "marks": [],
+                                "data": {}
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

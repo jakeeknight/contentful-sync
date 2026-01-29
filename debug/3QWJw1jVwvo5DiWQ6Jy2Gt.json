@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "tags": [],
+    "concepts": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "dwk8f4v6idyx"
+      }
+    },
+    "id": "3QWJw1jVwvo5DiWQ6Jy2Gt",
+    "type": "Entry",
+    "createdAt": "2023-10-26T18:46:19.989Z",
+    "updatedAt": "2023-10-27T06:34:23.238Z",
+    "environment": {
+      "sys": {
+        "id": "dev",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "publishedVersion": 9,
+    "publishedAt": "2023-10-27T06:34:23.238Z",
+    "firstPublishedAt": "2023-10-26T18:47:13.410Z",
+    "createdBy": {
+      "sys": {
+        "type": "Link",
+        "linkType": "User",
+        "id": "7Ms5RWtacLWmZjKDGUBoxV"
+      }
+    },
+    "updatedBy": {
+      "sys": {
+        "type": "Link",
+        "linkType": "User",
+        "id": "7Ms5RWtacLWmZjKDGUBoxV"
+      }
+    },
+    "publishedCounter": 3,
+    "version": 10,
+    "publishedBy": {
+      "sys": {
+        "type": "Link",
+        "linkType": "User",
+        "id": "7Ms5RWtacLWmZjKDGUBoxV"
+      }
+    },
+    "automationTags": [],
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "footer"
+      }
+    },
+    "urn": "crn:contentful:::content:spaces/dwk8f4v6idyx/environments/dev/entries/3QWJw1jVwvo5DiWQ6Jy2Gt"
+  },
+  "fields": {
+    "id": {
+      "en-US": "test footer"
+    },
+    "logo": {
+      "en-US": {
+        "sys": {
+          "type": "Link",
+          "linkType": "Entry",
+          "id": "3ktmSopxxyQo7e8yt7swoX"
+        }
+      }
+    },
+    "links": {
+      "en-US": [
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "11QJHHiH7RPg1j6WG0kwKw"
+          }
+        },
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "16cNIvmkpooliJkzCkm3mU"
+          }
+        },
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "3fcpAx7lCfRedNzASLerBv"
+          }
+        }
+      ]
+    }
+  }
+}

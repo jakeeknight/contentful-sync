@@ -9,7 +9,7 @@ export interface DependencyNode {
   children: DependencyNode[]
   depth: number
   status?: 'resolved' | 'pruned'
-  pruneReason?: 'content-type-loop'
+  pruneReason?: 'content-type-loop' | 'entry-loop'
 }
 
 export interface DependencyGraph {
