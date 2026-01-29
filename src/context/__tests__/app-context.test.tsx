@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { AppProvider, useAppContext } from '../app-context'
+import { AppProvider } from '../app-context'
+import { useAppContext } from '../use-app-context'
 
 function TestConsumer() {
   const { state, connect, setSourceEnv, setTargetEnv } = useAppContext()

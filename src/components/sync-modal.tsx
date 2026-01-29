@@ -1,12 +1,8 @@
 import { useAppContext } from "../context";
 import { X } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 
-interface SyncModalProps {
-  onSyncStart: () => void;
-}
-
-export function SyncModal({ onSyncStart }: SyncModalProps) {
+export function SyncModal() {
   const { state, closeModal } = useAppContext();
 
   const handleBackdropClick = (e: React.MouseEvent) => {
@@ -15,18 +11,18 @@ export function SyncModal({ onSyncStart }: SyncModalProps) {
     }
   };
 
-  const handleEscape = (e: KeyboardEvent) => {
+  const handleEscape = useCallback((e: KeyboardEvent) => {
     if (e.key === "Escape") {
       closeModal();
     }
-  };
+  }, [closeModal]);
 
   useEffect(() => {
     if (state.modalOpen) {
       window.addEventListener("keydown", handleEscape);
       return () => window.removeEventListener("keydown", handleEscape);
     }
-  }, [state.modalOpen]);
+  }, [state.modalOpen, handleEscape]);
 
   if (!state.modalOpen) return null;
 

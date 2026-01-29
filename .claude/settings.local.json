@@ -50,7 +50,21 @@
       "Bash(git -C /Users/jakeknight/Development/contentful-sync/.worktrees/content-type-loop-detection commit -m \"$\\(cat <<''EOF''\nfeat: add content type loop detection to DependencyResolver\n\nPrevent infinite recursion when the same content type appears multiple\ntimes in a dependency chain \\(e.g., Offer -> OfferHomePage -> Offer\\).\nEntries that would create a content type loop are marked as pruned\nand their children are not traversed.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Skill(superpowers:finishing-a-development-branch)",
       "Bash(git merge-base:*)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "Bash(git -C /Users/jakeknight/Development/contentful-sync/.worktrees/sync-modal log --oneline -5)",
+      "Bash(git -C /Users/jakeknight/Development/contentful-sync/.worktrees/sync-modal log --oneline --all)",
+      "Bash(git -C /Users/jakeknight/Development/contentful-sync/.worktrees/sync-modal show --name-only f3d0e3f)",
+      "Bash(git -C /Users/jakeknight/Development/contentful-sync/.worktrees/sync-modal show f3d0e3f:src/components/sync-modal.tsx)",
+      "Bash(git -C /Users/jakeknight/Development/contentful-sync/.worktrees/sync-modal status)",
+      "Bash(git *)",
+      "Bash(git -C /Users/jakeknight/Development/contentful-sync/.worktrees/sync-modal log --oneline -1)",
+      "Bash(git -C /Users/jakeknight/Development/contentful-sync/.worktrees/sync-modal branch:*)",
+      "Bash(git -C /Users/jakeknight/Development/contentful-sync/.worktrees/sync-modal log --oneline --all -- src/components/sync-modal.tsx)",
+      "Bash(git -C /Users/jakeknight/Development/contentful-sync/.worktrees/sync-modal ls-tree -r --name-only HEAD)",
+      "Bash(git -C /Users/jakeknight/Development/contentful-sync/.worktrees/sync-modal checkout f3d0e3f -- src/components/sync-modal.tsx)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(git ls-tree:*)"
     ]
   }
 }

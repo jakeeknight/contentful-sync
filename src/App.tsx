@@ -3,7 +3,7 @@ import { ConfigurationPanel } from "./components/configuration-panel";
 import { EnvironmentSelector } from "./components/environment-selector";
 import { SearchPanel } from "./components/search-panel";
 import { PreviewPanel } from "./components/preview-panel";
-import { StatusPanel } from "./components/status-panel";
+import { SyncModal } from "./components/sync-modal";
 import { Button } from "./components/ui/button";
 
 const STORAGE_KEY = "contentful-sync-credentials";
@@ -119,10 +119,12 @@ function AppContent() {
             <EnvironmentSelector />
             <SearchPanel />
             <PreviewPanel />
-            <StatusPanel />
           </>
         )}
       </main>
+
+      {/* Sync Modal */}
+      <SyncModal />
 
       {/* Footer */}
       <footer className="border-t border-[#e8e8e8] mt-auto py-6">

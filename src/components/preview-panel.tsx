@@ -6,7 +6,7 @@ import { Alert } from "./ui/alert";
 import { DependencyTree } from "./dependency-tree";
 
 export function PreviewPanel() {
-  const { state, executeSync } = useAppContext();
+  const { state, openModal } = useAppContext();
 
   const canSync =
     state.dependencyGraph && state.targetEnvironment && !state.isSyncing;
@@ -48,7 +48,7 @@ export function PreviewPanel() {
 
             <div className="flex justify-end">
               <Button
-                onClick={executeSync}
+                onClick={openModal}
                 disabled={!canSync}
                 loading={state.isSyncing}
               >
